@@ -20,18 +20,18 @@ export default function reducer(state = {}, action) {
         ...state,
         photo: action.photo,
       };
-    case 'GET_AUTORISATION_SUCCESS':
+    case 'SET_AUTORISATION_SUCCESS':
       return {
         ...state,
         sid: action.sid,
         loginStatus: true,
       };
-    case 'GET_AUTORISATION_STARTED':
+    case 'SET_AUTORISATION_STARTED':
       return {
         ...state,
         loginStatus: false,
       };
-    case 'GET_AUTORISATION_FAILURE':
+    case 'SET_AUTORISATION_FAILURE':
       return {
         ...state,
         loginStatus: false,
@@ -67,17 +67,17 @@ export default function reducer(state = {}, action) {
         ...state,
         info: false,
       };
-    case 'GET_LOGOUT_STARTED':
+    case 'SET_LOGOUT_STARTED':
       return {
         ...state,
         loginStatus: true,
       };
-    case 'GET_LOGOUT_FAILURE':
+    case 'SET_LOGOUT_FAILURE':
       return {
         ...state,
         loginStatus: true,
       };
-    case 'GET_LOGOUT_SUCCESS':
+    case 'SET_LOGOUT_SUCCESS':
       return {
         ...state,
         loginStatus: false,

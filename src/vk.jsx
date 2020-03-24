@@ -14,12 +14,10 @@ import {
   TextCenter,
 } from './styled';
 
-
-/* {import App from './App';
-import * as serviceWorker from './serviceWorker';} */
-
 export default class VK extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.props = props;
   }
 
   render() {
@@ -42,9 +40,7 @@ export default class VK extends React.Component {
             <Grid item xs={12} />
             <Grid item xs={12} />
             <Grid item xs={12}>
-              <Grid item xs={12}>
-                {' '}
-              </Grid>
+              <Grid item xs={12} />
               <Grid item xs={12}>
                 <TextCenter>{`${firstName} ${lastName} ${status}`}</TextCenter>
               </Grid>

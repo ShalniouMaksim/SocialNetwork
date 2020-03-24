@@ -15,29 +15,29 @@ import * as serviceWorker from './serviceWorker';} */
 export default class Component extends React.Component {
   componentDidMount() {
     const {
-      getAutorisationSuccess: getAutorisationSuccesses,
-      getAutorisationFailure: getAutorisationFailures,
-      getAutorisation: getAutorisationStart,
+      setAutorisationSuccess,
+      setAutorisationFailure,
+      checkAutorisation,
     } = this.props;
-    getAutorisationStart();
-    if (localStorage.loc === 'true') {
-      getAutorisationSuccesses();
-    } else getAutorisationFailures();
+    checkAutorisation();
+    if (localStorage.isAuth === 'true') {
+      setAutorisationSuccess();
+    } else setAutorisationFailure();
   }
 
     getAuthorisationVk = () => {
-      const { authorisationOAuth: oAuth } = this.props;
-      oAuth();
+      const { authorisationOAuth } = this.props;
+      authorisationOAuth();
     };
 
     getInfoUser = () => {
-      const { getGet: get } = this.props;
-      get();
+      const { getInfoFromAccount } = this.props;
+      getInfoFromAccount();
     }
 
     getLogoutVk = async () => {
-      const { logoutUser: logout } = this.props;
-      logout();
+      const { logoutUser } = this.props;
+      logoutUser();
     };
 
     render() {
@@ -74,7 +74,6 @@ Welcome
                   color="primary"
                   onClick={this.getInfoUser}
                 >
-                  {' '}
                 Получить данные
                 </Button>
               </Grid>
@@ -92,7 +91,7 @@ Welcome
                   <Grid item xs={3} />
                   <Grid item xs={3} />
                   <Grid item xs={3}>
-Welcome
+                  Welcome
                   </Grid>
                   <Grid item xs={3} />
                   <Grid item xs={3}>
@@ -102,8 +101,7 @@ Welcome
                         color="primary"
                         onClick={this.getAuthorisationVk}
                       >
-                        {' '}
-              Login
+                      Login
                       </Button>
                     </ButtonStyled>
                   </Grid>
@@ -124,10 +122,10 @@ Component.propTypes = {
   loginStatus: PropTypes.bool,
   logoutUser: PropTypes.func.isRequired,
   authorisationOAuth: PropTypes.func.isRequired,
-  getAutorisationSuccess: PropTypes.func.isRequired,
-  getAutorisationFailure: PropTypes.func.isRequired,
-  getAutorisation: PropTypes.func.isRequired,
-  getGet: PropTypes.func.isRequired,
+  setAutorisationSuccess: PropTypes.func.isRequired,
+  setAutorisationFailure: PropTypes.func.isRequired,
+  checkAutorisation: PropTypes.func.isRequired,
+  getInfoFromAccount: PropTypes.func.isRequired,
 };
 Component.defaultProps = {
   loginStatus: false,

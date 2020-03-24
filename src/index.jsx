@@ -14,10 +14,7 @@ const logger = createLogger({ collapsed: true });
 const store = createStore(reducer, applyMiddleware(sagaMiddleware, logger));
 sagaMiddleware.run(watchMessages);
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js', { scope: '../' }).then(() => console.log('reg'))
-    .catch((error) => console.log('Error', error));
-} else {
-  console.log('Browser do not supports service worker');
+  navigator.serviceWorker.register('sw.js', { scope: '../' }).then().catch();
 }
 ReactDOM.render(
   <Provider store={store}>

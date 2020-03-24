@@ -1,37 +1,36 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import {
+  call, put, takeEvery,
+} from 'redux-saga/effects';
 import {
   setFirstName,
   setLastName,
   setStatus,
   setUrlPhoto,
-  getAutorisationSuccess,
-  getAutorisationStarted,
-  getAutorisationFailure,
+  setAutorisationSuccess,
+  setAutorisationStarted,
+  setAutorisationFailure,
   getAccountInfoStarted,
   getAccountInfoFailure,
   getAccountInfoSuccess,
   getFriendsStarted,
   getFriendsSuccess,
   getFriendsFailure,
-  getLogoutStarted,
-  getLogoutFailure,
-  getLogoutSuccess,
-  getGet,
+  setLogoutStarted,
+  setLogoutFailure,
+  setLogoutSuccess,
+  getInfoFromAccount,
 } from './actions';
 import { vkCall, vkLogin, vkLogout } from './helper';
 import apiIdVk from './constants';
 
 
 const logoutVkFunc = function* logoutVkFunc() {
-  yield call(vkCall, 'users.get', {
-    v: '5.73',
-  });
-  yield put(getLogoutStarted());
+  yield put(setLogoutStarted());
   const resultLogout = yield call(vkLogout);
-  if (resultLogout.session) yield put(getLogoutFailure());
+  if (resultLogout.session) yield put(setLogoutFailure());
   else {
-    yield put(getLogoutSuccess());
-    localStorage.setItem('loc', false);
+    yield put(setLogoutSuccess());
+    localStorage.setItem('isAuth', false);
   }
 };
 
@@ -69,14 +68,16 @@ const getFriends = function* getFriends() {
   }
 };
 const authorisationOAuth = function* authorisationOAuth() {
-  yield put(getAutorisationStarted());
+  yield put(setAutorisationStarted());
   const resultLogin = yield call(vkLogin, 73728);
   if (resultLogin.session) {
-    yield put(getAutorisationSuccess(resultLogin.session.sid));
-    localStorage.setItem('loc', true);
+    yield put(setAutorisationSuccess(resultLogin.session.sid));
+    localStorage.setItem('isAuth', true);
   } else {
-    yield put(getAutorisationFailure());
+    yield put(setAutorisationFailure());
   }
+  yield put(getAccountInfoStarted());
+  yield put(getFriendsStarted());
 };
 const getInfoUser = function* getInfoUser() {
   yield put(getAccountInfoStarted());
@@ -84,7 +85,7 @@ const getInfoUser = function* getInfoUser() {
 };
 const initFunc = function* initFunc() {
   yield call(window.VK.init, { apiId: apiIdVk });
-  yield put(getGet());
+  if (localStorage.isAuth === 'true') yield put(getInfoFromAccount());
 };
 
 export default function* watchMessages() {
@@ -92,6 +93,6 @@ export default function* watchMessages() {
   yield takeEvery('LOGOUT_USER', logoutVkFunc);
   yield takeEvery('GET_ACCOUNT_INFO_STARTED', getAccountInfo);
   yield takeEvery('GET_FRIENDS_STARTED', getFriends);
-  yield takeEvery('GET_GET', getInfoUser);
-  yield takeEvery('GET_AUTORISATION', initFunc);
+  yield takeEvery('GET_INFO_FROM_ACCOUNT', getInfoUser);
+  yield takeEvery('CHECK_AUTORISATION', initFunc);
 }

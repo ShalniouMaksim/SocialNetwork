@@ -18,9 +18,9 @@ export function setLastName(lastName) {
   };
 }
 
-export function getGet() {
+export function getInfoFromAccount() {
   return {
-    type: 'GET_GET',
+    type: 'GET_INFO_FROM_ACCOUNT',
   };
 }
 
@@ -44,28 +44,28 @@ export function logoutUser() {
   };
 }
 
-export function getAutorisationSuccess(sid) {
+export function setAutorisationSuccess(sid) {
   return {
-    type: 'GET_AUTORISATION_SUCCESS',
+    type: 'SET_AUTORISATION_SUCCESS',
     sid,
   };
 }
 
-export function getAutorisationStarted() {
+export function setAutorisationStarted() {
   return {
-    type: 'GET_AUTORISATION_STARTED',
+    type: 'SET_AUTORISATION_STARTED',
   };
 }
 
-export function getAutorisation() {
+export function checkAutorisation() {
   return {
-    type: 'GET_AUTORISATION',
+    type: 'CHECK_AUTORISATION',
   };
 }
 
-export function getAutorisationFailure() {
+export function setAutorisationFailure() {
   return {
-    type: 'GET_AUTORISATION_FAILURE',
+    type: 'SET_AUTORISATION_FAILURE',
   };
 }
 
@@ -106,20 +106,20 @@ export function getFriendsFailure() {
   };
 }
 
-export function getLogoutStarted() {
+export function setLogoutStarted() {
   return {
-    type: 'GET_LOGOUT_STARTED',
+    type: 'SET_LOGOUT_STARTED',
   };
 }
 
-export function getLogoutFailure() {
+export function setLogoutFailure() {
   return {
-    type: 'GET_LOGOUT_FAILURE',
+    type: 'SET_LOGOUT_FAILURE',
   };
 }
 
-export function getLogoutSuccess() {
+export function setLogoutSuccess() {
   return {
-    type: 'GET_LOGOUT_SUCCESS',
+    type: 'SET_LOGOUT_SUCCESS',
   };
 }
