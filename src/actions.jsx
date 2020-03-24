@@ -18,6 +18,12 @@ export function setLastName(lastName) {
   };
 }
 
+export function getGet() {
+  return {
+    type: 'GET_GET',
+  };
+}
+
 export function setStatus(status) {
   return {
     type: 'SET_STATUS',
@@ -48,6 +54,12 @@ export function getAutorisationSuccess(sid) {
 export function getAutorisationStarted() {
   return {
     type: 'GET_AUTORISATION_STARTED',
+  };
+}
+
+export function getAutorisation() {
+  return {
+    type: 'GET_AUTORISATION',
   };
 }
 

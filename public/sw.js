@@ -1,21 +1,21 @@
 const CACHE = 'cache-and-update';
 
-function precache() {
-  return caches
-    .open(CACHE)
-    .then((cache) => cache.addAll(['./controlled.html', './asset']));
+async function precache() {
+  const cache = await caches
+    .open(CACHE);
+  return await cache.addAll(['../src', './asset']);
 }
-function fromCache(request) {
-  return caches
-    .open(CACHE)
-    .then((cache) => cache
-      .match(request)
-      .then((matching) => matching || Promise.reject('no-match')));
+async function fromCache(request) {
+  const cache = await caches
+    .open(CACHE);
+  const matching = await cache.match(request);
+  return matching || fetch(request);
 }
-function update(request) {
-  return caches
-    .open(CACHE)
-    .then((cache) => fetch(request).then((response) => cache.put(request, response)));
+async function update(request) {
+  const cache = await caches
+    .open(CACHE);
+  const response = await fetch(request);
+  return await cache.put(request, response);
 }
 
 this.addEventListener('install', (evt) => {
@@ -24,7 +24,6 @@ this.addEventListener('install', (evt) => {
 });
 
 this.addEventListener('fetch', (evt) => {
-  console.log('The service worker is serving the asset.');
   evt.respondWith(fromCache(evt.request));
   evt.waitUntil(update(evt.request));
 });

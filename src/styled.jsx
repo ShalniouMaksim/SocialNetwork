@@ -31,7 +31,7 @@ export const LayoutItem = styled.div`
   justify-content: space-between;
 `;
 
-export const Img = styled.img`
+export const ImgAvatar = styled.img`
   width: 10%;
   height: 10%;
   border: none;
@@ -40,7 +40,7 @@ export const Img = styled.img`
   object-fit: contain;
 `;
 
-export const Imged = styled.img`
+export const ImgFriend = styled.img`
   width: 80%;
   height: 50%;
   border: none;
@@ -51,7 +51,7 @@ export const Imged = styled.img`
 
 export const TableStyle = styled.div`
   margin-top: 3%;
- width:100%;
+  width: 100%;
   height: 300px;
   overflow-x: auto;
 `;
@@ -65,5 +65,5 @@ export const TextCenter = styled.p`
 `;
 
 export const ButtonStyled = styled.div`
-margin-left: 30%;
+  margin-left: 30%;
 `;
