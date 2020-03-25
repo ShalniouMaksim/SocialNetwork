@@ -17,10 +17,28 @@ code {
 }
 p{
   margin: 0%;
-  margin-left: 0%;
-  margin-top: 0%;
     color: black;
     font-size: 100%;
+    @media (max-width: 3840px) {
+      margin: 0%;
+
+  }
+  @media (max-width: 3000px) {
+    margin-top: 0%;
+
+  }
+  @media (max-width: 2300px) {
+    margin-top: 4%;
+  }
+  @media (max-width: 1300px) {
+    margin-top: 4%;
+  }
+  @media (max-width: 1000px) {
+    margin-top: 6%;
+  }
+  @media (max-width: 550px) {
+    margin-top: 8%;
+  }
 }
   `;
 export default GlobalStyle;

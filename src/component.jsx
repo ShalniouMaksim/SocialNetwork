@@ -1,9 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import {
   Header, Footer, ButtonStyled,
+  ButtonStyledGet, TextStyleHeader,
 } from './styled';
 import { GlobalStyle } from './globalstyles';
 import VK from './container';
@@ -26,8 +26,8 @@ export default class Component extends React.Component {
   }
 
     getAuthorisationVk = () => {
-      const { authorisationOAuth } = this.props;
-      authorisationOAuth();
+      const { loginOAuthVK } = this.props;
+      loginOAuthVK();
     };
 
     getInfoUser = () => {
@@ -41,7 +41,7 @@ export default class Component extends React.Component {
     };
 
     render() {
-      const { loginStatus } = this.props;
+      const { loginStatus, loadingInfo, getFriendsLoading } = this.props;
       return (
         (loginStatus)
           ? (
@@ -49,33 +49,26 @@ export default class Component extends React.Component {
               <GlobalStyle />
               <Grid item xs={3}>
                 <Header>
-                  <Grid item xs={3} />
-                  <Grid item xs={3} />
-                  <Grid item xs={3}>
-Welcome
-                  </Grid>
-                  <Grid item xs={3} />
-                  <Grid item xs={3}>
-                    <ButtonStyled>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.getLogoutVk}
-                      >
-                        {' '}
-                Logout
-                      </Button>
-                    </ButtonStyled>
-                  </Grid>
-
+                  <TextStyleHeader>
+                    Welcome
+                  </TextStyleHeader>
+                  <ButtonStyled
+                    variant="contained"
+                    color="primary"
+                    onClick={this.getLogoutVk}
+                  >
+                        Logout
+                  </ButtonStyled>
+                  <ButtonStyledGet
+                    disabled={!(loadingInfo && getFriendsLoading)}
+                    variant="contained"
+                    color="primary"
+                    onClick={this.getInfoUser}
+                  >
+                      Получить данные
+                  </ButtonStyledGet>
                 </Header>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.getInfoUser}
-                >
-                Получить данные
-                </Button>
+
               </Grid>
               <VK />
               <Grid item xs={12}>
@@ -86,26 +79,16 @@ Welcome
           : (
             <Grid container spacing={1}>
               <GlobalStyle />
-              <Grid item xs={3}>
+              <Grid item xs={12}>
                 <Header>
-                  <Grid item xs={3} />
-                  <Grid item xs={3} />
-                  <Grid item xs={3}>
                   Welcome
-                  </Grid>
-                  <Grid item xs={3} />
-                  <Grid item xs={3}>
-                    <ButtonStyled>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.getAuthorisationVk}
-                      >
+                  <ButtonStyled
+                    variant="contained"
+                    color="primary"
+                    onClick={this.getAuthorisationVk}
+                  >
                       Login
-                      </Button>
-                    </ButtonStyled>
-                  </Grid>
-
+                  </ButtonStyled>
                 </Header>
               </Grid>
               <VK />
@@ -120,13 +103,17 @@ Welcome
 
 Component.propTypes = {
   loginStatus: PropTypes.bool,
+  loadingInfo: PropTypes.bool,
+  getFriendsLoading: PropTypes.bool,
   logoutUser: PropTypes.func.isRequired,
-  authorisationOAuth: PropTypes.func.isRequired,
+  loginOAuthVK: PropTypes.func.isRequired,
   setAutorisationSuccess: PropTypes.func.isRequired,
   setAutorisationFailure: PropTypes.func.isRequired,
   checkAutorisation: PropTypes.func.isRequired,
   getInfoFromAccount: PropTypes.func.isRequired,
 };
 Component.defaultProps = {
+  loadingInfo: true,
+  getFriendsLoading: true,
   loginStatus: false,
 };

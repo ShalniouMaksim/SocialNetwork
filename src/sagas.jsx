@@ -39,18 +39,19 @@ const getAccountInfo = function* getAccountInfo() {
     fields: 'online,photo_200',
     v: '5.73',
   });
-
-  if (resultUser.response[0].id) {
-    yield put(getAccountInfoSuccess());
-    yield put(setFirstName(resultUser.response[0].first_name));
-    yield put(setLastName(resultUser.response[0].last_name));
-    yield put(setUrlPhoto(resultUser.response[0].photo_200));
-    switch (resultUser.response[0].online) {
-      case 0:
-        yield put(setStatus('Offline'));
-        break;
-      default:
-        yield put(setStatus('Online'));
+  if (!resultUser.error) {
+    if (resultUser.response[0].id) {
+      yield put(getAccountInfoSuccess());
+      yield put(setFirstName(resultUser.response[0].first_name));
+      yield put(setLastName(resultUser.response[0].last_name));
+      yield put(setUrlPhoto(resultUser.response[0].photo_200));
+      switch (resultUser.response[0].online) {
+        case 0:
+          yield put(setStatus('Offline'));
+          break;
+        default:
+          yield put(setStatus('Online'));
+      }
     }
   } else {
     yield put(getAccountInfoFailure());
@@ -61,8 +62,10 @@ const getFriends = function* getFriends() {
     fields: 'name,photo_200_orig',
     v: '5.73',
   });
-  if (result.response.items) {
-    yield put(getFriendsSuccess(result.response.items));
+  if (!result.error) {
+    if (result.response.items) {
+      yield put(getFriendsSuccess(result.response.items));
+    }
   } else {
     yield put(getFriendsFailure());
   }
@@ -89,7 +92,7 @@ const initFunc = function* initFunc() {
 };
 
 export default function* watchMessages() {
-  yield takeEvery('OAUTH_AUTHORISATION', authorisationOAuth);
+  yield takeEvery('LOGIN_OAUTH_VK', authorisationOAuth);
   yield takeEvery('LOGOUT_USER', logoutVkFunc);
   yield takeEvery('GET_ACCOUNT_INFO_STARTED', getAccountInfo);
   yield takeEvery('GET_FRIENDS_STARTED', getFriends);

@@ -39,33 +39,34 @@ export default function reducer(state = {}, action) {
     case 'GET_FRIENDS_STARTED':
       return {
         ...state,
-        getFriends: false,
+        getFriendsLoading: false,
       };
     case 'GET_FRIENDS_SUCCESS':
       return {
         ...state,
-        getFriends: true,
+        getFriendsLoading: true,
         friends: action.friends,
       };
     case 'GET_FRIENDS_FAILURE':
       return {
         ...state,
-        getFriends: false,
+        getFriendsLoading: true,
       };
     case 'GET_ACCOUNT_INFO_SUCCESS':
       return {
         ...state,
-        info: true,
+        loadingInfo: true,
       };
     case 'GET_ACCOUNT_INFO_STARTED':
       return {
         ...state,
-        info: false,
+        loadingInfo: false,
       };
     case 'GET_ACCOUNT_INFO_FAILURE':
       return {
         ...state,
-        info: false,
+        loadingInfo: true,
+        getFriendsLoading: true,
       };
     case 'SET_LOGOUT_STARTED':
       return {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { authorisationOAuth, setAutorisationSuccess, logoutUser } from './actions';
+import { loginOAuthVK, setAutorisationSuccess, logoutUser } from './actions';
 import VK from './vk';
 
 function mapStateToProps(state) {
@@ -16,7 +16,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  authorisationOAuth: () => dispatch(authorisationOAuth()),
+  loginOAuthVK: () => dispatch(loginOAuthVK()),
   setAutorisationSuccess: (value) => dispatch(setAutorisationSuccess(value)),
   logoutUser: () => dispatch(logoutUser()),
 });

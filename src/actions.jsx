@@ -1,6 +1,6 @@
-export function authorisationOAuth() {
+export function loginOAuthVK() {
   return {
-    type: 'OAUTH_AUTHORISATION',
+    type: 'LOGIN_OAUTH_VK',
   };
 }
 

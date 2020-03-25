@@ -12,92 +12,75 @@ import {
   TableStyle,
   TextColorRed,
   TextCenter,
+  ContainerInfoUser,
+  TableStyled,
 } from './styled';
 
-export default class VK extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-
-  render() {
-    const {
-      firstName,
-      lastName,
-      status,
-      photo,
-      friends,
-      loginStatus,
-    } = this.props;
-    return (
-      (loginStatus)
-        ? (
-          <Grid container spacing={1}>
-            <Grid item xs={12} />
-            <Grid item xs={12} />
-            <Grid item xs={12} />
-            <Grid item xs={12} />
-            <Grid item xs={12} />
-            <Grid item xs={12} />
+const VK = (props) => {
+  const {
+    firstName,
+    lastName,
+    status,
+    photo,
+    friends,
+    loginStatus,
+  } = props;
+  return (
+    (loginStatus)
+      && (
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <ContainerInfoUser>
+            <TextCenter>{`${firstName} ${lastName} ${status}`}</TextCenter>
+            {photo && <ImgAvatar src={photo} />}
+          </ContainerInfoUser>
+          <TableStyle>
             <Grid item xs={12}>
-              <Grid item xs={12} />
-              <Grid item xs={12}>
-                <TextCenter>{`${firstName} ${lastName} ${status}`}</TextCenter>
-              </Grid>
-              <Grid item xs={12}>
-                {photo && <ImgAvatar src={photo} />}
-              </Grid>
-              <TableStyle>
-                <Grid item xs={12}>
-                  <Table stickyHeader>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell align="left">Photo</TableCell>
-                        <TableCell align="left">id</TableCell>
-                        <TableCell align="left">Firstname</TableCell>
-                        <TableCell align="left">Lastname</TableCell>
-                        <TableCell align="left">onlinestatus</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {friends[0].id ? (
-                        friends.map((friend) => (friend.first_name !== 'DELETED' ? (
-                          <TableRow key={friend.id}>
-                            <TableCell align="left">
-                              <ImgFriend src={friend.photo_200_orig} />
-                            </TableCell>
-                            <TableCell align="left">{friend.id}</TableCell>
-                            <TableCell align="left">
-                              {friend.first_name}
-                            </TableCell>
-                            <TableCell align="left">
-                              {friend.last_name}
-                            </TableCell>
-                            {friend.online ? (
-                              <TableCell align="left">Online</TableCell>
-                            ) : (
-                              <TableCell align="left">
-                                <TextColorRed>Offline</TextColorRed>
-                              </TableCell>
-                            )}
-                          </TableRow>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableStyled align="left">Photo</TableStyled>
+                    <TableStyled align="left">id</TableStyled>
+                    <TableStyled align="left">Firstname</TableStyled>
+                    <TableStyled align="left">Lastname</TableStyled>
+                    <TableStyled align="left">onlinestatus</TableStyled>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    friends.map((friend) => (friend.first_name !== 'DELETED' ? (
+                      <TableRow key={friend.id}>
+                        <TableCell align="left">
+                          <ImgFriend src={friend.photo_200_orig} />
+                        </TableCell>
+                        <TableCell align="left">{friend.id}</TableCell>
+                        <TableCell align="left">
+                          {friend.first_name}
+                        </TableCell>
+                        <TableCell align="left">
+                          {friend.last_name}
+                        </TableCell>
+                        {friend.online ? (
+                          <TableCell align="left">Online</TableCell>
                         ) : (
-                          <TableRow key={friend.id} />
-                        )))
-                      ) : (
-                        <TableRow />
-                      )}
-                    </TableBody>
-                  </Table>
-                </Grid>
-              </TableStyle>
+                          <TableCell align="left">
+                            <TextColorRed>Offline</TextColorRed>
+                          </TableCell>
+                        )}
+                      </TableRow>
+                    ) : (
+                      <TableRow key={friend.id} />
+                    )))
+                  }
+                </TableBody>
+              </Table>
             </Grid>
-          </Grid>
-        )
-        : <Grid />
-    );
-  }
-}
+          </TableStyle>
+        </Grid>
+      </Grid>
+      )
+  );
+};
 VK.propTypes = {
   photo: PropTypes.string,
   status: PropTypes.string,
@@ -122,3 +105,5 @@ VK.defaultProps = {
     },
   ],
 };
+
+export default VK;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {
-  authorisationOAuth, setAutorisationSuccess, logoutUser,
+  loginOAuthVK, setAutorisationSuccess, logoutUser,
   setAutorisationFailure, checkAutorisation, getInfoFromAccount,
 } from './actions';
 import Component from './component';
@@ -8,12 +8,14 @@ import Component from './component';
 function mapStateToProps(state) {
   return {
     loginStatus: state.loginStatus,
+    loadingInfo: state.loadingInfo,
+    getFriendsLoading: state.getFriendsLoading,
   };
 }
 const mapDispatchToProps = (dispatch) => ({
   logoutUser: () => dispatch(logoutUser()),
   getInfoFromAccount: () => dispatch(getInfoFromAccount()),
-  authorisationOAuth: () => dispatch(authorisationOAuth()),
+  loginOAuthVK: () => dispatch(loginOAuthVK()),
   setAutorisationSuccess: () => dispatch(setAutorisationSuccess()),
   setAutorisationFailure: () => dispatch(setAutorisationFailure()),
   checkAutorisation: () => dispatch(checkAutorisation()),
