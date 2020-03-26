@@ -1,0 +1,6 @@
+{
+  "extends": "@greylocklabs/stylelint-config-styled-components",
+  "rules": {
+    "number-leading-zero": null
+  }
+}

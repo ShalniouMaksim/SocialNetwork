@@ -18,16 +18,10 @@ import {
 
 const VK = (props) => {
   const {
-    firstName,
-    lastName,
-    status,
-    photo,
-    friends,
-    loginStatus,
+    firstName, lastName, status, photo, friends, loginStatus,
   } = props;
   return (
-    (loginStatus)
-      && (
+    loginStatus && (
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <ContainerInfoUser>
@@ -47,38 +41,32 @@ const VK = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {
-                    friends.map((friend) => (friend.first_name !== 'DELETED' ? (
-                      <TableRow key={friend.id}>
+                  {friends.map((friend) => (friend.first_name !== 'DELETED' ? (
+                    <TableRow key={friend.id}>
+                      <TableCell align="left">
+                        <ImgFriend src={friend.photo_200_orig} />
+                      </TableCell>
+                      <TableCell align="left">{friend.id}</TableCell>
+                      <TableCell align="left">{friend.first_name}</TableCell>
+                      <TableCell align="left">{friend.last_name}</TableCell>
+                      {friend.online ? (
+                        <TableCell align="left">Online</TableCell>
+                      ) : (
                         <TableCell align="left">
-                          <ImgFriend src={friend.photo_200_orig} />
+                          <TextColorRed>Offline</TextColorRed>
                         </TableCell>
-                        <TableCell align="left">{friend.id}</TableCell>
-                        <TableCell align="left">
-                          {friend.first_name}
-                        </TableCell>
-                        <TableCell align="left">
-                          {friend.last_name}
-                        </TableCell>
-                        {friend.online ? (
-                          <TableCell align="left">Online</TableCell>
-                        ) : (
-                          <TableCell align="left">
-                            <TextColorRed>Offline</TextColorRed>
-                          </TableCell>
-                        )}
-                      </TableRow>
-                    ) : (
-                      <TableRow key={friend.id} />
-                    )))
-                  }
+                      )}
+                    </TableRow>
+                  ) : (
+                    <TableRow key={friend.id} />
+                  )))}
                 </TableBody>
               </Table>
             </Grid>
           </TableStyle>
         </Grid>
       </Grid>
-      )
+    )
   );
 };
 VK.propTypes = {
