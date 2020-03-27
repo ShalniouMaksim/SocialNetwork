@@ -14,9 +14,9 @@ import {
   TextCenter,
   ContainerInfoUser,
   TableStyled,
-} from './styled';
+} from '../styled';
 
-const VK = (props) => {
+const UserInfo = (props) => {
   const {
     firstName, lastName, status, photo, friends, loginStatus,
   } = props;
@@ -26,7 +26,7 @@ const VK = (props) => {
         <Grid item xs={12}>
           <ContainerInfoUser>
             <TextCenter>{`${firstName} ${lastName} ${status}`}</TextCenter>
-            {photo && <ImgAvatar src={photo} />}
+            {photo && <ImgAvatar sizes="small" src={photo} />}
           </ContainerInfoUser>
           <TableStyle>
             <Grid item xs={12}>
@@ -69,7 +69,7 @@ const VK = (props) => {
     )
   );
 };
-VK.propTypes = {
+UserInfo.propTypes = {
   photo: PropTypes.string,
   status: PropTypes.string,
   lastName: PropTypes.string,
@@ -77,7 +77,7 @@ VK.propTypes = {
   loginStatus: PropTypes.bool,
   friends: PropTypes.arrayOf(PropTypes.shape()),
 };
-VK.defaultProps = {
+UserInfo.defaultProps = {
   photo: '',
   status: '',
   lastName: '',
@@ -94,4 +94,4 @@ VK.defaultProps = {
   ],
 };
 
-export default VK;
+export default UserInfo;

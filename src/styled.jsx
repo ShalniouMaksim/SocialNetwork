@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
 
@@ -67,7 +68,7 @@ export const LayoutItem = styled.div`
   justify-content: space-between;
 `;
 
-export const ImgAvatar = styled.img`
+export const ImgAvatar = styled(Avatar)`
   width: 10%;
   height: 10%;
   border: none;
@@ -76,12 +77,10 @@ export const ImgAvatar = styled.img`
   object-fit: contain;
 `;
 
-export const ImgFriend = styled.img`
-  width: 80%;
-  height: 50%;
+export const ImgFriend = styled(Avatar)`
   border: none;
   object-fit: contain;
-  margin-left: -20%;
+  margin-left: 0%;
   margin-top: 5%;
 `;
 

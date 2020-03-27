@@ -1,7 +1,7 @@
 
 import { connect } from 'react-redux';
-import { loginOAuthVK, setAutorisationSuccess, logoutUser } from './actions';
-import VK from './vkComponent';
+import { loginOAuthVK, setAutorisationSuccess, logoutUser } from '../actions';
+import UserInfo from '../components/userInfo';
 
 function mapStateToProps(state) {
   return {
@@ -21,4 +21,4 @@ const mapDispatchToProps = (dispatch) => ({
   logoutUser: () => dispatch(logoutUser()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(VK);
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);

@@ -4,9 +4,12 @@ import ReactDOM from 'react-dom';
 import createSagaMiddleware from 'redux-saga';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { Footer } from './styled';
 import reducer from './redusers';
 import watchMessages from './sagas';
-import Component from './container';
+import HeaderComponent from './containers/header';
+import UserInfo from './containers/userInfo';
+import { GlobalStyle } from './globalstyles';
 
 
 const sagaMiddleware = createSagaMiddleware();
@@ -18,7 +21,12 @@ if ('serviceWorker' in navigator) {
 }
 ReactDOM.render(
   <Provider store={store}>
-    <Component />
+    <HeaderComponent />
+    <GlobalStyle />
+    <UserInfo />
+    <Footer>
+      2020
+    </Footer>
   </Provider>,
   document.getElementById('root'),
 );
