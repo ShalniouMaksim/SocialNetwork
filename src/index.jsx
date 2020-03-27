@@ -6,7 +6,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './redusers';
 import watchMessages from './sagas';
-import Component from './containerVK';
+import Component from './container';
 
 
 const sagaMiddleware = createSagaMiddleware();

@@ -1,24 +1,20 @@
 import { connect } from 'react-redux';
-import { loginOAuthVK, setAutorisationSuccess, logoutUser } from './actions';
-import VK from './vk';
+import {
+  setAutorisationSuccess,
+  setAutorisationFailure, checkAutorisation,
+} from './actions';
+import Component from './component';
 
 function mapStateToProps(state) {
   return {
-    jopa: state.jopa,
-    firstName: state.firstName,
-    lastName: state.lastName,
-    status: state.status,
-    photo: state.photo,
-    sid: state.sid,
     loginStatus: state.loginStatus,
-    friends: state.friends,
   };
 }
-
 const mapDispatchToProps = (dispatch) => ({
-  loginOAuthVK: () => dispatch(loginOAuthVK()),
-  setAutorisationSuccess: (value) => dispatch(setAutorisationSuccess(value)),
-  logoutUser: () => dispatch(logoutUser()),
+  setAutorisationSuccess: () => dispatch(setAutorisationSuccess()),
+  setAutorisationFailure: () => dispatch(setAutorisationFailure()),
+  checkAutorisation: () => dispatch(checkAutorisation()),
+
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(VK);
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

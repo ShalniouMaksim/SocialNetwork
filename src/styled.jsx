@@ -98,37 +98,56 @@ export const TextColorRed = styled.p`
 
 export const TextCenter = styled.p`
   text-align: center;
+  margin: 0%;
+  color: black;
+  font-size: 100%;
+
+  @media (max-width: 3000px) {
+    margin-top: 0%;
+  }
+
+  @media (max-width: 1300px) {
+    margin-top: 4%;
+  }
+
+  @media (max-width: 1000px) {
+    margin-top: 6%;
+  }
+
+  @media (max-width: 550px) {
+    margin-top: 8%;
+  }
 `;
 export const ButtonStyled = styled(Button)`
   float: right;
 
   @media (max-width: 3840px) {
-    margin-top: -2.2%;
+    margin-top: -3.2%;
     margin-right: 1.5%;
   }
 
   @media (max-width: 2300px) {
-    margin-top: -2.1%;
+    margin-top: -3%;
   }
 
   @media (max-width: 1300px) {
-    margin-top: -2.7%;
+    margin-top: -4%;
     margin-right: 1%;
   }
 
   @media (max-width: 1150) {
-    margin-top: -2.5%;
+    margin-top: -3.9%;
   }
 
   @media (max-width: 1000px) {
-    margin-top: -3%;
+    margin-top: -4.5%;
     margin-right: 2%;
     font-size: 75%;
     padding: 1%;
   }
 
   @media (max-width: 550px) {
-    margin-top: -4.5%;
+    margin-top: -5.4%;
     margin-right: 2.5%;
     font-size: 50%;
     padding: 2%;
@@ -139,31 +158,31 @@ export const ButtonStyledGet = styled(Button)`
   float: left;
 
   @media (max-width: 3840px) {
-    margin-top: -2.2%;
+    margin-top: -3.2%;
   }
 
   @media (max-width: 2300px) {
-    margin-top: -2.2%;
+    margin-top: -3%;
   }
 
   @media (max-width: 1300px) {
-    margin-top: -2.7%;
+    margin-top: -4%;
     margin-left: -0.5%;
   }
 
   @media (max-width: 1150) {
-    margin-top: -2.5%;
+    margin-top: -3.9%;
   }
 
   @media (max-width: 1000px) {
-    margin-top: -3%;
+    margin-top: -4.5%;
     margin-left: -1%;
     font-size: 75%;
     padding: 1%;
   }
 
   @media (max-width: 550px) {
-    margin-top: -4.5%;
+    margin-top: -5.4%;
     margin-left: -1.5%;
     font-size: 50%;
     padding: 2%;

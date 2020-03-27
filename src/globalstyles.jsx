@@ -13,27 +13,5 @@ export const GlobalStyle = createGlobalStyle`
     code {
       font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
-
-    p {
-      margin: 0%;
-      color: black;
-      font-size: 100%;
-
-      @media (max-width: 3000px) {
-        margin-top: 0%;
-      }
-
-      @media (max-width: 1300px) {
-        margin-top: 4%;
-      }
-
-      @media (max-width: 1000px) {
-        margin-top: 6%;
-      }
-
-      @media (max-width: 550px) {
-        margin-top: 8%;
-      }
-    }
   `;
 export default GlobalStyle;

@@ -76,11 +76,11 @@ const authorisationOAuth = function* authorisationOAuth() {
   if (resultLogin.session) {
     yield put(setAutorisationSuccess(resultLogin.session.sid));
     localStorage.setItem('isAuth', true);
+    yield put(getAccountInfoStarted());
+    yield put(getFriendsStarted());
   } else {
     yield put(setAutorisationFailure());
   }
-  yield put(getAccountInfoStarted());
-  yield put(getFriendsStarted());
 };
 const getInfoUser = function* getInfoUser() {
   yield put(getAccountInfoStarted());
