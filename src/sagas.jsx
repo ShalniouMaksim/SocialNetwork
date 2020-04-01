@@ -72,6 +72,7 @@ const getFriends = function* getFriends() {
 };
 const authorisationOAuth = function* authorisationOAuth() {
   yield put(setAutorisationStarted());
+  yield call(window.VK.init, { apiId: apiIdVk });
   const resultLogin = yield call(vkLogin, 73728);
   if (resultLogin.session) {
     yield put(setAutorisationSuccess(resultLogin.session.sid));
@@ -88,7 +89,10 @@ const getInfoUser = function* getInfoUser() {
 };
 const initFunc = function* initFunc() {
   yield call(window.VK.init, { apiId: apiIdVk });
-  if (localStorage.isAuth === 'true') yield put(getInfoFromAccount());
+  if (localStorage.isAuth === 'true') {
+    yield put(setAutorisationSuccess());
+    yield put(getInfoFromAccount());
+  } else yield put(setAutorisationFailure());
 };
 
 export default function* watchMessages() {

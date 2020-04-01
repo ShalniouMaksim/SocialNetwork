@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
+import Grid from '@material-ui/core/Grid';
+
 
 export const Header = styled.header`
   background-color: rgba(21, 0, 155, 0.75);
@@ -63,10 +65,6 @@ export const Footer = styled.footer`
     font-size: 75%;
   }
 `;
-export const LayoutItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
 
 export const ImgAvatar = styled(Avatar)`
   width: 10%;
@@ -121,33 +119,33 @@ export const ButtonStyled = styled(Button)`
   float: right;
 
   @media (max-width: 3840px) {
-    margin-top: -3.2%;
-    margin-right: 1.5%;
+    margin-top: 0%;
+    margin-right: 0.5%;
   }
 
   @media (max-width: 2300px) {
-    margin-top: -3%;
+    margin-top: 0.5%;
   }
 
   @media (max-width: 1300px) {
-    margin-top: -4%;
-    margin-right: 1%;
+    margin-top: 1%;
+    margin-right: 0%;
   }
 
   @media (max-width: 1150) {
-    margin-top: -3.9%;
+    margin-top: 0%;
   }
 
   @media (max-width: 1000px) {
-    margin-top: -4.5%;
-    margin-right: 2%;
+    margin-top: 0%;
+    margin-right: 0.5%;
     font-size: 75%;
     padding: 1%;
   }
 
   @media (max-width: 550px) {
-    margin-top: -5.4%;
-    margin-right: 2.5%;
+    margin-top: 0%;
+    margin-right: 1%;
     font-size: 50%;
     padding: 2%;
   }
@@ -157,31 +155,31 @@ export const ButtonStyledGet = styled(Button)`
   float: left;
 
   @media (max-width: 3840px) {
-    margin-top: -3.2%;
+    margin-top: 0%;
   }
 
   @media (max-width: 2300px) {
-    margin-top: -3%;
+    margin-top: 0.5%;
   }
 
   @media (max-width: 1300px) {
-    margin-top: -4%;
+    margin-top: 1%;
     margin-left: -0.5%;
   }
 
   @media (max-width: 1150) {
-    margin-top: -3.9%;
+    margin-top: 0%;
   }
 
   @media (max-width: 1000px) {
-    margin-top: -4.5%;
+    margin-top: 0%;
     margin-left: -1%;
     font-size: 75%;
     padding: 1%;
   }
 
   @media (max-width: 550px) {
-    margin-top: -5.4%;
+    margin-top: 0%;
     margin-left: -1.5%;
     font-size: 50%;
     padding: 2%;
@@ -189,12 +187,27 @@ export const ButtonStyledGet = styled(Button)`
 `;
 
 export const ContainerInfoUser = styled.div`
-  margin-top: 3%;
+  @media (max-width: 3840px) {
+    margin-top: 0%;
+  }
+
+  @media (max-width: 2300px) {
+    margin-top: 0.5%;
+  }
+
+  @media (max-width: 1300px) {
+    margin-top: -5%;
+  }
 `;
 
 export const TextStyledHeader = styled.p`
   margin-top: 0%;
   color: white;
+`;
+
+export const BorderItem = styled.div`
+  border: 2px solid blue;
+  border-radius: 10%;
 `;
 
 export const TableStyled = styled(TableCell)`
@@ -203,4 +216,13 @@ export const TableStyled = styled(TableCell)`
   z-index: 2;
   position: sticky;
   background-color: white;
+`;
+
+export const StyledInputForm = styled(Grid)`
+  margin-top: 15%;
+  margin-left: 1%;
+`;
+
+export const StyledInputDivs = styled.div`
+  margin: 15%;
 `;

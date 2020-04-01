@@ -1,7 +1,7 @@
 
 import { connect } from 'react-redux';
 import { loginOAuthVK, setAutorisationSuccess, logoutUser } from '../actions';
-import UserInfo from '../components/userInfo';
+import UserInfo from '../components/userInfoLogin';
 
 function mapStateToProps(state) {
   return {
