@@ -1,6 +1,4 @@
-import {
-  call, put, takeEvery,
-} from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import {
   setFirstName,
   setLastName,
@@ -22,7 +20,6 @@ import {
 } from './actions';
 import { vkCall, vkLogin, vkLogout } from './helper';
 import apiIdVk from './constants';
-
 
 const logoutVkFunc = function* logoutVkFunc() {
   yield put(setLogoutStarted());
@@ -89,10 +86,16 @@ const getInfoUser = function* getInfoUser() {
 };
 const initFunc = function* initFunc() {
   yield call(window.VK.init, { apiId: apiIdVk });
-  if (localStorage.isAuth === 'true') {
-    yield put(setAutorisationSuccess());
-    yield put(getInfoFromAccount());
-  } else yield put(setAutorisationFailure());
+  const resultUser = yield call(vkCall, 'users.get', {
+    fields: 'online,photo_200',
+    v: '5.73',
+  });
+  if (!resultUser.error) {
+    if (resultUser.response[0].id) {
+      yield put(setAutorisationSuccess());
+      yield put(getInfoFromAccount());
+    } else yield put(setAutorisationFailure());
+  }
 };
 
 export default function* watchMessages() {
