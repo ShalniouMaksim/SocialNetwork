@@ -1,4 +1,36 @@
-export default function reducer(state = {}, action) {
+/* eslint-disable camelcase */
+const initialState = {
+  firstname: '',
+  lastName: '',
+  status: '',
+  photo: '',
+  sid: '',
+  loginStatus: false,
+  loadingInfo: false,
+  getFriendsLoading: false,
+  friends: [{}],
+};
+interface FriendsInterface {
+  id: string;
+  first_name: string;
+  photo_200_orig: string;
+  last_name: string;
+  online: string;
+}
+
+interface StateInterface {
+  type: string;
+  firstName: string;
+  lastName: string;
+  status: string;
+  photo: string;
+  sid: string;
+  loginStatus: boolean,
+  loadingInfo: boolean,
+  getFriendsLoading: boolean;
+  friends: Array<FriendsInterface>;
+}
+export default function reducer(state = initialState, action: StateInterface): object {
   switch (action.type) {
     case 'SET_FIRST_NAME':
       return {

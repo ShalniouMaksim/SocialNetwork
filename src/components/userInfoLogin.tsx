@@ -1,5 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable camelcase */
+/* eslint-disable react/jsx-filename-extension */
+
+import React, { ReactElement } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,7 +18,22 @@ import {
   TableStyled,
 } from '../styled';
 
-const UserInfo = (props) => {
+interface FriendsInterface {
+  id: string;
+  first_name: string;
+  photo_200_orig: string;
+  last_name: string;
+  online: string;
+}
+interface Props {
+  firstName: string;
+  lastName: string;
+  status: string;
+  photo: string;
+  friends: Array<FriendsInterface>;
+}
+
+const UserInfo = (props: Props): ReactElement<Props> => {
   const {
     firstName, lastName, status, photo, friends,
   } = props;
@@ -40,25 +57,26 @@ const UserInfo = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {friends.map((friend) => (friend.first_name !== 'DELETED' ? (
-                  <TableRow key={friend.id}>
-                    <TableCell align="left">
-                      <ImgFriend src={friend.photo_200_orig} />
-                    </TableCell>
-                    <TableCell align="left">{friend.id}</TableCell>
-                    <TableCell align="left">{friend.first_name}</TableCell>
-                    <TableCell align="left">{friend.last_name}</TableCell>
-                    {friend.online ? (
-                      <TableCell align="left">Online</TableCell>
-                    ) : (
+                {friends
+                && friends
+                  .filter((friend: FriendsInterface) => friend.id)
+                  .map((friend: FriendsInterface) => (
+                    <TableRow key={friend.id}>
                       <TableCell align="left">
-                        <TextColorRed>Offline</TextColorRed>
+                        <ImgFriend src={friend.photo_200_orig} />
                       </TableCell>
-                    )}
-                  </TableRow>
-                ) : (
-                  <TableRow key={friend.id} />
-                )))}
+                      <TableCell align="left">{friend.id}</TableCell>
+                      <TableCell align="left">{friend.first_name}</TableCell>
+                      <TableCell align="left">{friend.last_name}</TableCell>
+                      {friend.online ? (
+                        <TableCell align="left">Online</TableCell>
+                      ) : (
+                        <TableCell align="left">
+                          <TextColorRed>Offline</TextColorRed>
+                        </TableCell>
+                      )}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </Grid>
@@ -66,28 +84,6 @@ const UserInfo = (props) => {
       </Grid>
     </Grid>
   );
-};
-UserInfo.propTypes = {
-  photo: PropTypes.string,
-  status: PropTypes.string,
-  lastName: PropTypes.string,
-  firstName: PropTypes.string,
-  friends: PropTypes.arrayOf(PropTypes.shape()),
-};
-UserInfo.defaultProps = {
-  photo: '',
-  status: '',
-  lastName: '',
-  firstName: '',
-  friends: [
-    {
-      id: '',
-      photo_200: '',
-      first_name: '',
-      last_name: '',
-      online: '',
-    },
-  ],
 };
 
 export default UserInfo;

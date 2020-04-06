@@ -1,6 +1,7 @@
-import React from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import React, { ReactElement } from 'react';
 import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
+import { History } from 'history';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {
@@ -13,26 +14,35 @@ import {
 
 /* {import App from './App';
 import * as serviceWorker from './serviceWorker';} */
-
-export default class HeaderComponent extends React.Component {
-  componentDidUpdate() {
-    const { loginStatus, history } = this.props;
+interface Props {
+  getInfoFromAccount: () => void;
+  checkAutorisation: () => void;
+  loginStatus: boolean;
+  history: History;
+  getInformationFromAccount: () => void;
+  logoutUser: () => void;
+  loadingInfo: boolean;
+  getFriendsLoading: () => void;
+  loginOAuthVK: () => void;
+}
+export default class HeaderComponent extends React.Component<Props> {
+  componentDidUpdate(): void {
+    const { loginStatus, history }: Props = this.props;
     if (loginStatus) history.push('/logout');
   }
 
-  getAuthorisationVk = async () => {
-    const { loginOAuthVK } = this.props;
+  getAuthorisationVk = (): void => {
+    const { loginOAuthVK }: Props = this.props;
     loginOAuthVK();
   };
 
-  render() {
+  render(): ReactElement<Props> {
     return (
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Header>
             <TextStyledHeader>Welcome</TextStyledHeader>
           </Header>
-
           <StyledInputForm container align="center" justify="center">
             <BorderItem>
               <StyledInputDivs>
@@ -57,12 +67,3 @@ export default class HeaderComponent extends React.Component {
     );
   }
 }
-
-HeaderComponent.propTypes = {
-  history: PropTypes.shape([]).isRequired,
-  loginStatus: PropTypes.bool,
-  loginOAuthVK: PropTypes.func.isRequired,
-};
-HeaderComponent.defaultProps = {
-  loginStatus: false,
-};

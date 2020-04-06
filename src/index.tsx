@@ -1,3 +1,6 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { createLogger } from 'redux-logger';
 import ReactDOM from 'react-dom';
@@ -7,12 +10,12 @@ import { Provider } from 'react-redux';
 import { Footer } from './styled';
 import reducer from './redusers';
 import watchMessages from './sagas';
-import RouterComponent from './routeConfig';
+import RouterComponent from './components/routeConfig';
 import { GlobalStyle } from './globalstyles';
 
 const sagaMiddleware = createSagaMiddleware();
 const logger = createLogger({ collapsed: true });
-const store = createStore(reducer, applyMiddleware(sagaMiddleware, logger));
+const store = createStore(Object(reducer), applyMiddleware(sagaMiddleware, logger));
 sagaMiddleware.run(watchMessages);
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker

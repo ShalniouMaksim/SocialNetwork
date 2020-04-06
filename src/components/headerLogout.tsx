@@ -1,6 +1,7 @@
-import React from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import React, { ReactElement } from 'react';
 import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
+import { History } from 'history';
 import {
   Header,
   ButtonStyled,
@@ -8,33 +9,42 @@ import {
   TextStyledHeader,
 } from '../styled';
 
+interface Props {
+  getInfoFromAccount: () => void;
+  checkAutorisation: () => void;
+  loginStatus: boolean;
+  history: History;
+  getInformationFromAccount: () => void;
+  logoutUser: () => void;
+  loadingInfo: boolean;
+  getFriendsLoading: () => void;
+}
 /* {import App from './App';
 import * as serviceWorker from './serviceWorker';} */
 
-export default class HeaderComponent extends React.Component {
-  componentDidMount() {
-    const { checkAutorisation } = this.props;
+export default class HeaderComponent extends React.Component<Props> {
+  componentDidMount(): void {
+    const { checkAutorisation }: Props = this.props;
     checkAutorisation();
   }
 
-  componentDidUpdate() {
-    const { loginStatus, history } = this.props;
+  componentDidUpdate(): void {
+    const { loginStatus, history }: Props = this.props;
     if (!loginStatus) history.push('/auth');
   }
 
-  getInfoUser = () => {
-    const { getInfoFromAccount } = this.props;
+  getInfoUser = (): void => {
+    const { getInfoFromAccount }: Props = this.props;
     getInfoFromAccount();
   };
 
-  getLogoutVk = async () => {
-    const { logoutUser } = this.props;
+  getLogoutVk = (): void => {
+    const { logoutUser }: Props = this.props;
     logoutUser();
   };
 
-  render() {
-    const { loadingInfo, getFriendsLoading } = this.props;
-
+  render(): ReactElement<Props> {
+    const { loadingInfo, getFriendsLoading }: Props = this.props;
     return (
       <Grid container spacing={1}>
         <Grid item xs={12}>
@@ -61,18 +71,3 @@ export default class HeaderComponent extends React.Component {
     );
   }
 }
-
-HeaderComponent.propTypes = {
-  history: PropTypes.shape([]).isRequired,
-  loginStatus: PropTypes.bool,
-  loadingInfo: PropTypes.bool,
-  getFriendsLoading: PropTypes.bool,
-  logoutUser: PropTypes.func.isRequired,
-  getInfoFromAccount: PropTypes.func.isRequired,
-  checkAutorisation: PropTypes.func.isRequired,
-};
-HeaderComponent.defaultProps = {
-  loginStatus: false,
-  loadingInfo: true,
-  getFriendsLoading: true,
-};
