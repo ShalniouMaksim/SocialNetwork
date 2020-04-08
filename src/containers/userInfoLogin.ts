@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { loginOAuthVK, setAutorisationSuccess, logoutUser } from '../actions';

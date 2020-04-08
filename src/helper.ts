@@ -1,6 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
-/* eslint-disable no-undef */
 import {
   FetchUserCall, FetchFriendsCall, FetchLogin, FetchLogout,
 } from './interfaces';

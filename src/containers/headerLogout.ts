@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { withRouter } from 'react-router-dom';
@@ -12,18 +11,18 @@ import {
 } from '../actions';
 import HeaderLogout from '../components/headerLogout';
 import {
-  StoreInterface, MapStateToPropsLogout, ActionType,
-  CompDispatchPropsUserLogout,
+  StoreInterface, MapStateToProps, ActionType,
+  CompDispatchPropsUser,
 } from '../interfaces';
 
-function mapStateToProps(state: StoreInterface):MapStateToPropsLogout {
+function mapStateToProps(state: StoreInterface):MapStateToProps {
   return {
     loginStatus: state.loginStatus,
     loadingInfo: state.loadingInfo,
     getFriendsLoading: state.getFriendsLoading,
   };
 }
-const mapDispatchToProps = (dispatch: Dispatch): CompDispatchPropsUserLogout => ({
+const mapDispatchToProps = (dispatch: Dispatch): CompDispatchPropsUser => ({
   logoutUser: (): ActionType => dispatch(logoutUser()),
   getInfoFromAccount: (): ActionType => dispatch(getInfoFromAccount()),
   loginOAuthVK: (): ActionType => dispatch(loginOAuthVK()),

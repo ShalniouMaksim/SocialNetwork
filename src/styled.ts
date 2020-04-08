@@ -4,17 +4,12 @@ import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
 import Grid from '@material-ui/core/Grid';
 
-
 export const Header = styled.header`
   background-color: rgba(21, 0, 155, 0.75);
   color: white;
   padding: 10px;
   height: 20px;
   text-align: center;
-
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   position: fixed;
   top: 0;
   width: 100%;

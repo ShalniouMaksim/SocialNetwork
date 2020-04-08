@@ -1,6 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
-// eslint-disable-next-line import/extensions
 import { actionCreatorFactory } from 'typescript-fsa';
 import { FriendsInterface } from './interfaces';
 

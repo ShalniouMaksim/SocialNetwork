@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
 import { isType } from 'typescript-fsa';
 import { StoreInterface, State } from './interfaces';
 import

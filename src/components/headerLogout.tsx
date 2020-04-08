@@ -1,7 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable import/extensions */
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { StoreInterface } from '../interfaces';
@@ -11,8 +7,6 @@ import {
   ButtonStyledGet,
   TextStyledHeader,
 } from '../styled';
-/* {import App from './App';
-import * as serviceWorker from './serviceWorker';} */
 
 export default class HeaderComponent extends React.Component<StoreInterface> {
   componentDidMount(): void {

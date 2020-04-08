@@ -1,17 +1,45 @@
-/* eslint-disable camelcase */
 import { History } from 'history';
 
-export interface State
+interface UserInfo
 {
     firstName: string,
     lastName: string,
     status: boolean,
     photo: string,
-    sid: string,
+}
+
+export interface MapStateToProps
+{
     loginStatus: boolean,
     loadingInfo: boolean,
     getFriendsLoading: boolean,
+}
+
+export interface MapStateToPropsUserInfo extends UserInfo
+{
+    sid: string,
+    loginStatus: boolean,
     friends: Array<FriendsInterface>,
+}
+
+export interface CompDispatchPropsUserInfo
+{
+  loginOAuthVK: () => void,
+  setAutorisationSuccess: (value: string) => void,
+  logoutUser: () => void,
+}
+
+export interface CompDispatchPropsUser extends CompDispatchPropsUserInfo
+{
+  setAutorisationFailure: () => void,
+  getInfoFromAccount: () => void,
+  checkAutorisation: () => void,
+}
+
+export interface State extends MapStateToPropsUserInfo
+{
+    loadingInfo: boolean,
+    getFriendsLoading: boolean,
 }
 
 export interface FriendsInterface {
@@ -24,18 +52,9 @@ export interface FriendsInterface {
 export interface ActionType {
     type: string,
   }
-export interface StoreInterface {
+export interface StoreInterface extends State{
     type: string,
-    loginStatus: boolean,
     history: History,
-    loadingInfo: boolean,
-    firstName: string,
-    lastName: string,
-    status: boolean,
-    photo: string,
-    sid: string,
-    friends: Array<FriendsInterface>,
-    getFriendsLoading: boolean,
     loginOAuthVK: () => void,
     getInfoFromAccount: () => void,
     checkAutorisation: () => void,
@@ -55,13 +74,6 @@ export interface FetchUserCall
                 online: number,
             }
     }
-}
-
-export interface MapStateToPropsLogout
-{
-    loginStatus: boolean,
-    loadingInfo: boolean,
-    getFriendsLoading: boolean,
 }
 
 export interface FetchFriendsCall
@@ -113,77 +125,27 @@ export interface FetchLogout
     settings: undefined,
 }
 
-export interface FriendsSuccess
+export interface FriendsSuccess extends ActionType
 {
-    type: string,
     friends: FriendsInterface
 }
 
-export interface UrlPhoto
+export interface UrlPhoto extends ActionType
 {
-    type: string,
     photo: string
 }
 
-export interface FirstName
+export interface FirstName extends ActionType
 {
-    type: string,
     firstName: string
 }
 
-export interface LastName
+export interface LastName extends ActionType
 {
-    type: string,
     lastName: string
 }
 
-export interface Status
+export interface Status extends ActionType
 {
-    type: string,
     status: string
-}
-
-export interface MapStateToPropsLogin
-{
-    loginStatus: boolean,
-    loadingInfo: boolean,
-    getFriendsLoading: boolean,
-}
-
-export interface MapStateToPropsUserInfo
-{
-    firstName: string,
-    lastName: string,
-    status: boolean,
-    photo: string,
-    sid: string,
-    loginStatus: boolean,
-    friends: Array<FriendsInterface>,
-}
-
-export interface CompDispatchPropsUserInfo
-{
-  loginOAuthVK: () => void,
-  setAutorisationSuccess: (value: string) => void,
-  logoutUser: () => void,
-}
-
-export interface CompDispatchPropsUserLogout
-{
-  logoutUser: () => void,
-  setAutorisationSuccess: (value: string) => void,
-  setAutorisationFailure: () => void,
-  loginOAuthVK: () => void,
-  getInfoFromAccount: () => void,
-  checkAutorisation: () => void,
-}
-
-export interface CompDispatchPropsUserLogin
-{
-  logoutUser: () => void,
-  setAutorisationSuccess: (value: string) => void,
-  setAutorisationFailure: () => void,
-  loginOAuthVK: () => void,
-  getInfoFromAccount: () => void,
-  checkAutorisation: () => void,
 }

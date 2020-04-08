@@ -1,7 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable import/extensions */
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -15,9 +11,6 @@ import {
   BorderItem,
   StyledInputButton,
 } from '../styled';
-
-/* {import App from './App';
-import * as serviceWorker from './serviceWorker';} */
 
 export default class HeaderComponent extends React.Component<StoreInterface> {
   componentDidUpdate(): void {

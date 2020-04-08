@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
-/* eslint-disable react/jsx-filename-extension */
-
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Table from '@material-ui/core/Table';

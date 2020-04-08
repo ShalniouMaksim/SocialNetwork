@@ -1,6 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable no-undef */
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { createLogger } from 'redux-logger';
 import ReactDOM from 'react-dom';

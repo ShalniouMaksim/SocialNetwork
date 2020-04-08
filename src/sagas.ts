@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable no-undef */
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { SagaIterator } from '@redux-saga/core';
 import {
@@ -25,7 +23,6 @@ import { vkCall, vkLogin, vkLogout } from './helper';
 import apiIdVk from './constants';
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   interface Window { VK: any; }
 }
 window.VK = window.VK || {};
