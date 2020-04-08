@@ -1,33 +1,33 @@
+/* eslint-disable import/extensions */
+/* eslint-disable camelcase */
 /* eslint-disable no-undef */
-export function vkCall(method: string, obj: object): Promise<object> {
+import {
+  FetchUserCall, FetchFriendsCall, FetchLogin, FetchLogout,
+} from './interfaces';
+
+export function vkCall(method: string, obj: {fields: string, v: string}):
+Promise<FetchUserCall | FetchFriendsCall> {
   return new Promise((resolve, reject) => {
     window.VK.Api.call(
       method, obj,
-      (response: object) => resolve(response),
-      (response: object) => reject(response),
+      (response: FetchUserCall | FetchFriendsCall) => resolve(response),
+      (response: FetchUserCall | FetchFriendsCall) => reject(response),
     );
   });
 }
 
-export function vkLogin(arg: number):Promise<object> {
+export function vkLogin(arg: number):Promise<FetchLogin> {
   return new Promise((resolve, reject) => {
-    window.VK.Auth.login((response: object) => {
+    window.VK.Auth.login((response: FetchLogin) => {
       resolve(response);
     },
-    (response: object) => reject(response), arg);
+    (response: FetchLogin) => reject(response), arg);
   });
 }
 
-export function vkLogout():Promise<object> {
+export function vkLogout():Promise<FetchLogout> {
   return new Promise((resolve, reject) => {
-    window.VK.Auth.logout((response: object) => resolve(response),
-      (response: object) => reject(response));
-  });
-}
-
-export function vkGetLoginStatus(): Promise<object> {
-  return new Promise((resolve, reject) => {
-    window.VK.Auth.getSession((response: object) => resolve(response),
-      (response: object) => reject(response));
+    window.VK.Auth.logout((response: FetchLogout) => resolve(response),
+      (response: FetchLogout) => reject(response));
   });
 }

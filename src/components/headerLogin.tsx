@@ -1,49 +1,43 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable import/extensions */
 /* eslint-disable react/jsx-filename-extension */
-import React, { ReactElement } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { History } from 'history';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { StoreInterface } from '../interfaces';
 import {
   Header,
   TextStyledHeader,
   StyledInputForm,
   StyledInputDivs,
   BorderItem,
+  StyledInputButton,
 } from '../styled';
 
 /* {import App from './App';
 import * as serviceWorker from './serviceWorker';} */
-interface Props {
-  getInfoFromAccount: () => void;
-  checkAutorisation: () => void;
-  loginStatus: boolean;
-  history: History;
-  getInformationFromAccount: () => void;
-  logoutUser: () => void;
-  loadingInfo: boolean;
-  getFriendsLoading: () => void;
-  loginOAuthVK: () => void;
-}
-export default class HeaderComponent extends React.Component<Props> {
+
+export default class HeaderComponent extends React.Component<StoreInterface> {
   componentDidUpdate(): void {
-    const { loginStatus, history }: Props = this.props;
-    if (loginStatus) history.push('/logout');
+    const { history } = this.props;
+    if (localStorage.isAuth === 'true') history.push('/logout');
   }
 
   getAuthorisationVk = (): void => {
-    const { loginOAuthVK }: Props = this.props;
+    const { loginOAuthVK } = this.props;
     loginOAuthVK();
   };
 
-  render(): ReactElement<Props> {
+  render() {
     return (
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Header>
             <TextStyledHeader>Welcome</TextStyledHeader>
           </Header>
-          <StyledInputForm container align="center" justify="center">
+          <StyledInputForm container>
             <BorderItem>
               <StyledInputDivs>
                 <TextField label="Login" />
@@ -51,7 +45,7 @@ export default class HeaderComponent extends React.Component<Props> {
               <StyledInputDivs>
                 <TextField label="Password" type="password" />
               </StyledInputDivs>
-              <StyledInputDivs>
+              <StyledInputButton>
                 <Button
                   variant="contained"
                   color="primary"
@@ -59,7 +53,7 @@ export default class HeaderComponent extends React.Component<Props> {
                 >
                   Login
                 </Button>
-              </StyledInputDivs>
+              </StyledInputButton>
             </BorderItem>
           </StyledInputForm>
         </Grid>

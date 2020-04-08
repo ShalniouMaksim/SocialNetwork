@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable import/extensions */
 /* eslint-disable camelcase */
 /* eslint-disable react/jsx-filename-extension */
 
-import React, { ReactElement } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,23 +19,9 @@ import {
   ContainerInfoUser,
   TableStyled,
 } from '../styled';
+import { StoreInterface, FriendsInterface } from '../interfaces';
 
-interface FriendsInterface {
-  id: string;
-  first_name: string;
-  photo_200_orig: string;
-  last_name: string;
-  online: string;
-}
-interface Props {
-  firstName: string;
-  lastName: string;
-  status: string;
-  photo: string;
-  friends: Array<FriendsInterface>;
-}
-
-const UserInfo = (props: Props): ReactElement<Props> => {
+const UserInfo = (props: StoreInterface) => {
   const {
     firstName, lastName, status, photo, friends,
   } = props;
@@ -41,7 +29,7 @@ const UserInfo = (props: Props): ReactElement<Props> => {
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <ContainerInfoUser>
-          <TextCenter>{`${firstName} ${lastName} ${status}`}</TextCenter>
+          <TextCenter>{firstName && lastName && status && `${firstName} ${lastName} ${status}`}</TextCenter>
           {photo && <ImgAvatar sizes="small" src={photo} />}
         </ContainerInfoUser>
         <TableStyle>

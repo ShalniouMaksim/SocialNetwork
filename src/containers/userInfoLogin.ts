@@ -1,26 +1,16 @@
 /* eslint-disable import/extensions */
 /* eslint-disable camelcase */
-
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { loginOAuthVK, setAutorisationSuccess, logoutUser } from '../actions';
 import UserInfo from '../components/userInfoLogin';
+import {
+  StoreInterface, MapStateToPropsUserInfo,
+  AutorisationSuccess, ActionType,
+  CompDispatchPropsUserInfo,
+} from '../interfaces';
 
-interface FriendsInterface {
-  id: string;
-  first_name: string;
-  photo_200_orig: string;
-  last_name: string;
-  online: string;
-}
-interface MapState {
-  firstName: string;
-  lastName: string;
-  status: string;
-  photo: string;
-  sid: string;
-  loginStatus: string;
-  friends: FriendsInterface; }
-function mapStateToProps(state: MapState): object {
+function mapStateToProps(state: StoreInterface): MapStateToPropsUserInfo {
   return {
     firstName: state.firstName,
     lastName: state.lastName,
@@ -32,11 +22,11 @@ function mapStateToProps(state: MapState): object {
   };
 }
 
-const mapDispatchToProps = (dispatch:
-  (arg0: object) => object): object => ({
-  loginOAuthVK: (): object => dispatch(loginOAuthVK()),
-  setAutorisationSuccess: (value: string): object => dispatch(setAutorisationSuccess(value)),
-  logoutUser: (): object => dispatch(logoutUser()),
+const mapDispatchToProps = (dispatch: Dispatch): CompDispatchPropsUserInfo => ({
+  loginOAuthVK: (): ActionType => dispatch(loginOAuthVK()),
+  setAutorisationSuccess: (value: string):
+  AutorisationSuccess => dispatch(setAutorisationSuccess(value)),
+  logoutUser: (): ActionType => dispatch(logoutUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Object(UserInfo));

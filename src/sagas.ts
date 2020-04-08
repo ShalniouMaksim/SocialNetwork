@@ -25,6 +25,7 @@ import { vkCall, vkLogin, vkLogout } from './helper';
 import apiIdVk from './constants';
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   interface Window { VK: any; }
 }
 window.VK = window.VK || {};

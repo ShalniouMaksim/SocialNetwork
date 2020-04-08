@@ -71,7 +71,7 @@ export const ImgAvatar = styled(Avatar)`
   height: 10%;
   border: none;
   margin-top: 1%;
-  margin-left: 45%;
+  margin-left: 50%;
   object-fit: contain;
 `;
 
@@ -96,15 +96,16 @@ export const TextColorRed = styled.p`
 export const TextCenter = styled.p`
   text-align: center;
   margin: 0%;
+  margin-left: 5%;
   color: black;
   font-size: 100%;
 
   @media (max-width: 3000px) {
-    margin-top: 0%;
+    margin-top: 4%;
   }
 
   @media (max-width: 1300px) {
-    margin-top: 4%;
+    margin-top: 6%;
   }
 
   @media (max-width: 1000px) {
@@ -220,9 +221,14 @@ export const TableStyled = styled(TableCell)`
 
 export const StyledInputForm = styled(Grid)`
   margin-top: 15%;
-  margin-left: 1%;
+  margin-left: 43%;
 `;
 
 export const StyledInputDivs = styled.div`
   margin: 15%;
+`;
+
+export const StyledInputButton = styled.div`
+  margin: 15%;
+  margin-left: 30%;
 `;

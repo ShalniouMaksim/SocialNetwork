@@ -1,50 +1,42 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable import/extensions */
 /* eslint-disable react/jsx-filename-extension */
-import React, { ReactElement } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { History } from 'history';
+import { StoreInterface } from '../interfaces';
 import {
   Header,
   ButtonStyled,
   ButtonStyledGet,
   TextStyledHeader,
 } from '../styled';
-
-interface Props {
-  getInfoFromAccount: () => void;
-  checkAutorisation: () => void;
-  loginStatus: boolean;
-  history: History;
-  getInformationFromAccount: () => void;
-  logoutUser: () => void;
-  loadingInfo: boolean;
-  getFriendsLoading: () => void;
-}
 /* {import App from './App';
 import * as serviceWorker from './serviceWorker';} */
 
-export default class HeaderComponent extends React.Component<Props> {
+export default class HeaderComponent extends React.Component<StoreInterface> {
   componentDidMount(): void {
-    const { checkAutorisation }: Props = this.props;
+    const { checkAutorisation } = this.props;
     checkAutorisation();
   }
 
   componentDidUpdate(): void {
-    const { loginStatus, history }: Props = this.props;
-    if (!loginStatus) history.push('/auth');
+    const { history } = this.props;
+    if (localStorage.isAuth !== 'true') history.push('/auth');
   }
 
   getInfoUser = (): void => {
-    const { getInfoFromAccount }: Props = this.props;
+    const { getInfoFromAccount } = this.props;
     getInfoFromAccount();
   };
 
   getLogoutVk = (): void => {
-    const { logoutUser }: Props = this.props;
+    const { logoutUser } = this.props;
     logoutUser();
   };
 
-  render(): ReactElement<Props> {
-    const { loadingInfo, getFriendsLoading }: Props = this.props;
+  render() {
+    const { loadingInfo, getFriendsLoading } = this.props;
     return (
       <Grid container spacing={1}>
         <Grid item xs={12}>

@@ -1,6 +1,12 @@
+/* eslint-disable import/extensions */
 /* eslint-disable camelcase */
-const initialState = {
-  firstname: '',
+import { isType, actionCreatorFactory } from 'typescript-fsa';
+import { StoreInterface, State } from './interfaces';
+
+const actionCreator = actionCreatorFactory();
+
+const initialState: State = {
+  firstName: '',
   lastName: '',
   status: '',
   photo: '',
@@ -8,115 +14,100 @@ const initialState = {
   loginStatus: false,
   loadingInfo: false,
   getFriendsLoading: false,
-  friends: [{}],
+  friends: [],
 };
-interface FriendsInterface {
-  id: string;
-  first_name: string;
-  photo_200_orig: string;
-  last_name: string;
-  online: string;
-}
 
-interface StateInterface {
-  type: string;
-  firstName: string;
-  lastName: string;
-  status: string;
-  photo: string;
-  sid: string;
-  loginStatus: boolean,
-  loadingInfo: boolean,
-  getFriendsLoading: boolean;
-  friends: Array<FriendsInterface>;
-}
-export default function reducer(state = initialState, action: StateInterface): object {
-  switch (action.type) {
-    case 'SET_FIRST_NAME':
-      return {
-        ...state,
-        firstName: action.firstName,
-      };
-    case 'SET_LAST_NAME':
-      return {
-        ...state,
-        lastName: action.lastName,
-      };
-    case 'SET_STATUS':
-      return {
-        ...state,
-        status: action.status,
-      };
-    case 'SET_URL_PHOTO':
-      return {
-        ...state,
-        photo: action.photo,
-      };
-    case 'SET_AUTORISATION_SUCCESS':
-      return {
-        ...state,
-        sid: action.sid,
-        loginStatus: true,
-      };
-    case 'SET_AUTORISATION_STARTED':
-      return {
-        ...state,
-        loginStatus: false,
-      };
-    case 'SET_AUTORISATION_FAILURE':
-      return {
-        ...state,
-        loginStatus: false,
-      };
-    case 'GET_FRIENDS_STARTED':
-      return {
-        ...state,
-        getFriendsLoading: false,
-      };
-    case 'GET_FRIENDS_SUCCESS':
-      return {
-        ...state,
-        getFriendsLoading: true,
-        friends: action.friends,
-      };
-    case 'GET_FRIENDS_FAILURE':
-      return {
-        ...state,
-        getFriendsLoading: true,
-      };
-    case 'GET_ACCOUNT_INFO_SUCCESS':
-      return {
-        ...state,
-        loadingInfo: true,
-      };
-    case 'GET_ACCOUNT_INFO_STARTED':
-      return {
-        ...state,
-        loadingInfo: false,
-      };
-    case 'GET_ACCOUNT_INFO_FAILURE':
-      return {
-        ...state,
-        loadingInfo: true,
-        getFriendsLoading: true,
-      };
-    case 'SET_LOGOUT_STARTED':
-      return {
-        ...state,
-        loginStatus: true,
-      };
-    case 'SET_LOGOUT_FAILURE':
-      return {
-        ...state,
-        loginStatus: true,
-      };
-    case 'SET_LOGOUT_SUCCESS':
-      return {
-        ...state,
-        loginStatus: false,
-      };
+const setFirstName = actionCreator<string>('SET_FIRST_NAME');
+const setLastName = actionCreator<string>('SET_LAST_NAME');
+const setStatus = actionCreator<string>('SET_STATUS');
+const setUrlPhoto = actionCreator<string>('SET_URL_PHOTO');
+const setAuthorisationSuccess = actionCreator<string>('SET_AUTORISATION_SUCCESS');
+const setAuthorisationStarted = actionCreator<string>('SET_AUTORISATION_STARTED');
+const setAuthorisationFailure = actionCreator<string>('SET_AUTORISATION_FAILURE');
+const getFriendsStarted = actionCreator<string>('GET_FRIENDS_STARTED');
+const getFriendsSuccess = actionCreator<string>('GET_FRIENDS_SUCCESS');
+const getFriendsFailure = actionCreator<string>('GET_FRIENDS_FAILURE');
+const getAccountInfoSuccess = actionCreator<string>('GET_ACCOUNT_INFO_SUCCESS');
+const getAccountInfoStarted = actionCreator<string>('GET_ACCOUNT_INFO_STARTED');
+const getAccountInfoFailure = actionCreator<string>('GET_ACCOUNT_INFO_FAILURE');
+const setLogoutStarted = actionCreator<string>('SET_LOGOUT_STARTED');
+const setLogoutFailure = actionCreator<string>('SET_LOGOUT_FAILURE');
+const setLogoutSuccess = actionCreator<string>('SET_LOGOUT_SUCCESS');
 
-    default:
-      return state;
+export default function reducer(state = initialState, action: StoreInterface): State {
+  if (isType(action, setFirstName)) {
+    return { ...state, firstName: action.firstName };
+  } if (isType(action, setLastName)) {
+    return {
+      ...state,
+      lastName: action.lastName,
+    };
+  } if (isType(action, setStatus)) {
+    return { ...state, status: action.status };
+  } if (isType(action, setUrlPhoto)) {
+    return {
+      ...state,
+      photo: action.photo,
+    };
+  } if (isType(action, setAuthorisationSuccess)) {
+    return {
+      ...state,
+      sid: action.sid,
+      loginStatus: true,
+    };
+  } if (isType(action, setAuthorisationStarted)) {
+    return {
+      ...state,
+      loginStatus: false,
+    };
+  } if (isType(action, setAuthorisationFailure)) {
+    return { ...state, loginStatus: false };
+  } if (isType(action, getFriendsStarted)) {
+    return {
+      ...state,
+      getFriendsLoading: false,
+    };
+  } if (isType(action, getFriendsSuccess)) {
+    return {
+      ...state,
+      getFriendsLoading: true,
+      friends: action.friends,
+    };
+  } if (isType(action, getFriendsFailure)) {
+    return {
+      ...state,
+      getFriendsLoading: true,
+    };
+  } if (isType(action, getAccountInfoSuccess)) {
+    return {
+      ...state,
+      loadingInfo: true,
+    };
+  } if (isType(action, getAccountInfoStarted)) {
+    return { ...state, loadingInfo: false };
+  } if (isType(action, getAccountInfoFailure)) {
+    return {
+      ...state,
+      loadingInfo: true,
+      getFriendsLoading: true,
+    };
+  } if (isType(action, setLogoutStarted)) {
+    return {
+      ...state,
+      getFriendsLoading: true,
+      loginStatus: true,
+    };
   }
+  if (isType(action, setLogoutFailure)) {
+    return {
+      ...state,
+      loginStatus: true,
+    };
+  } if (isType(action, setLogoutSuccess)) {
+    return {
+      ...state,
+      loginStatus: false,
+    };
+  }
+  return state;
 }
