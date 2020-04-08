@@ -71,7 +71,7 @@ export const ImgAvatar = styled(Avatar)`
   height: 10%;
   border: none;
   margin-top: 1%;
-  margin-left: 50%;
+  margin-left: 49%;
   object-fit: contain;
 `;
 
@@ -96,7 +96,7 @@ export const TextColorRed = styled.p`
 export const TextCenter = styled.p`
   text-align: center;
   margin: 0%;
-  margin-left: 5%;
+  margin-left: 1%;
   color: black;
   font-size: 100%;
 
@@ -120,33 +120,33 @@ export const ButtonStyled = styled(Button)`
   float: right;
 
   @media (max-width: 3840px) {
-    margin-top: 0%;
-    margin-right: 0.5%;
+    margin-top: 0% !important;
+    margin-right: 0.5% !important;
   }
 
   @media (max-width: 2300px) {
-    margin-top: 0.5%;
+    margin-top: 0.5% !important;
   }
 
   @media (max-width: 1300px) {
-    margin-top: 1%;
-    margin-right: 0%;
+    margin-top: 0.5% !important;
+    margin-right: 0% !important;
   }
 
   @media (max-width: 1150) {
-    margin-top: 0%;
+    margin-top: 0% !important;
   }
 
   @media (max-width: 1000px) {
-    margin-top: 0%;
-    margin-right: 0.5%;
+    margin-top: 0% !important;
+    margin-right: 0.5% !important;
     font-size: 75%;
     padding: 1%;
   }
 
   @media (max-width: 550px) {
-    margin-top: 0%;
-    margin-right: 1%;
+    margin-top: 0% !important;
+    margin-right: 1% !important;
     font-size: 50%;
     padding: 2%;
   }
@@ -156,32 +156,32 @@ export const ButtonStyledGet = styled(Button)`
   float: left;
 
   @media (max-width: 3840px) {
-    margin-top: 0%;
+    margin-top: 0% !important;
   }
 
   @media (max-width: 2300px) {
-    margin-top: 0.5%;
+    margin-top: 0.5% !important;
   }
 
   @media (max-width: 1300px) {
-    margin-top: 1%;
-    margin-left: -0.5%;
+    margin-top: 0.5% !important;
+    margin-left: -0.5% !important;
   }
 
   @media (max-width: 1150) {
-    margin-top: 0%;
+    margin-top: 0% !important;
   }
 
   @media (max-width: 1000px) {
-    margin-top: 0%;
-    margin-left: -1%;
+    margin-top: 0% !important;
+    margin-left: -1% !important;
     font-size: 75%;
-    padding: 1%;
+    padding: 1% ;
   }
 
   @media (max-width: 550px) {
-    margin-top: 0%;
-    margin-left: -1.5%;
+    margin-top: 0% !important;
+    margin-left: -1.5% !important;
     font-size: 50%;
     padding: 2%;
   }
@@ -189,11 +189,11 @@ export const ButtonStyledGet = styled(Button)`
 
 export const ContainerInfoUser = styled.div`
   @media (max-width: 3840px) {
-    margin-top: 0%;
+    margin-top: -3%;
   }
 
   @media (max-width: 2300px) {
-    margin-top: 0.5%;
+    margin-top: -3%;
   }
 
   @media (max-width: 1300px) {

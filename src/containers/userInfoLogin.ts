@@ -6,7 +6,7 @@ import { loginOAuthVK, setAutorisationSuccess, logoutUser } from '../actions';
 import UserInfo from '../components/userInfoLogin';
 import {
   StoreInterface, MapStateToPropsUserInfo,
-  AutorisationSuccess, ActionType,
+  ActionType,
   CompDispatchPropsUserInfo,
 } from '../interfaces';
 
@@ -24,8 +24,7 @@ function mapStateToProps(state: StoreInterface): MapStateToPropsUserInfo {
 
 const mapDispatchToProps = (dispatch: Dispatch): CompDispatchPropsUserInfo => ({
   loginOAuthVK: (): ActionType => dispatch(loginOAuthVK()),
-  setAutorisationSuccess: (value: string):
-  AutorisationSuccess => dispatch(setAutorisationSuccess(value)),
+  setAutorisationSuccess: (value: string):ActionType => dispatch(setAutorisationSuccess(value)),
   logoutUser: (): ActionType => dispatch(logoutUser()),
 });
 

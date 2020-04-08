@@ -5,7 +5,7 @@ export interface State
 {
     firstName: string,
     lastName: string,
-    status: string,
+    status: boolean,
     photo: string,
     sid: string,
     loginStatus: boolean,
@@ -31,7 +31,7 @@ export interface StoreInterface {
     loadingInfo: boolean,
     firstName: string,
     lastName: string,
-    status: string,
+    status: boolean,
     photo: string,
     sid: string,
     friends: Array<FriendsInterface>,
@@ -113,12 +113,6 @@ export interface FetchLogout
     settings: undefined,
 }
 
-export interface AutorisationSuccess
-{
-    type: string,
-    sid: string
-}
-
 export interface FriendsSuccess
 {
     type: string,
@@ -160,7 +154,7 @@ export interface MapStateToPropsUserInfo
 {
     firstName: string,
     lastName: string,
-    status: string,
+    status: boolean,
     photo: string,
     sid: string,
     loginStatus: boolean,

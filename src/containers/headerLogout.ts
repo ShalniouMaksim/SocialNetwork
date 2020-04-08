@@ -13,7 +13,7 @@ import {
 import HeaderLogout from '../components/headerLogout';
 import {
   StoreInterface, MapStateToPropsLogout, ActionType,
-  AutorisationSuccess, CompDispatchPropsUserLogout,
+  CompDispatchPropsUserLogout,
 } from '../interfaces';
 
 function mapStateToProps(state: StoreInterface):MapStateToPropsLogout {
@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch: Dispatch): CompDispatchPropsUserLogout => 
   logoutUser: (): ActionType => dispatch(logoutUser()),
   getInfoFromAccount: (): ActionType => dispatch(getInfoFromAccount()),
   loginOAuthVK: (): ActionType => dispatch(loginOAuthVK()),
-  setAutorisationSuccess: (value: string):
-  AutorisationSuccess => dispatch(setAutorisationSuccess(value)),
+  setAutorisationSuccess: (value: string):ActionType => dispatch(setAutorisationSuccess(value)),
+
   setAutorisationFailure: (): ActionType => dispatch(setAutorisationFailure()),
   checkAutorisation: (): ActionType => dispatch(checkAutorisation()),
 

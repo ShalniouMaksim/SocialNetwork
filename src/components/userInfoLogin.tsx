@@ -29,7 +29,7 @@ const UserInfo = (props: StoreInterface) => {
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <ContainerInfoUser>
-          <TextCenter>{firstName && lastName && status && `${firstName} ${lastName} ${status}`}</TextCenter>
+          <TextCenter>{firstName && lastName && status && `${firstName} ${lastName} ${(status) ? 'Online' : 'Offline'}`}</TextCenter>
           {photo && <ImgAvatar sizes="small" src={photo} />}
         </ContainerInfoUser>
         <TableStyle>

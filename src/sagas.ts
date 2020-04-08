@@ -53,10 +53,10 @@ const getAccountInfo = function* getAccountInfo(): SagaIterator {
       yield put(setUrlPhoto(resultUser.response[0].photo_200));
       switch (resultUser.response[0].online) {
         case 0:
-          yield put(setStatus('Offline'));
+          yield put(setStatus(false));
           break;
         default:
-          yield put(setStatus('Online'));
+          yield put(setStatus(true));
       }
     }
   } else {
@@ -101,7 +101,7 @@ const initFunc = function* initFunc(): SagaIterator {
   });
   if (!resultUser.error) {
     if (resultUser.response[0].id) {
-      yield put(setAutorisationSuccess('123'));
+      yield put(setAutorisationSuccess(resultUser.response[0].sid));
       yield put(getInfoFromAccount());
     } else yield put(setAutorisationFailure());
   }
