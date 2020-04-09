@@ -1,15 +1,16 @@
 import { History } from 'history';
 
-interface UserInfo
+export interface UserInfo
 {
     firstName: string,
     lastName: string,
-    status: boolean,
+    status: boolean | string,
     photo: string,
 }
 
 export interface MapStateToProps
 {
+    Auth: boolean,
     loginStatus: boolean,
     loadingInfo: boolean,
     getFriendsLoading: boolean,
@@ -38,11 +39,16 @@ export interface CompDispatchPropsUser extends CompDispatchPropsUserInfo
 
 export interface State extends MapStateToPropsUserInfo
 {
+    Auth: boolean,
     loadingInfo: boolean,
     getFriendsLoading: boolean,
 }
 
-export interface FriendsInterface {
+export interface FriendsInterface extends UserInfo {
+    id: string,
+  }
+
+export interface FriendsFetchInterface {
     id: string,
     first_name: string,
     photo_200_orig: string,

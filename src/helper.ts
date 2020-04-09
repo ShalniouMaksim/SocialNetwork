@@ -1,5 +1,7 @@
 import {
-  FetchUserCall, FetchFriendsCall, FetchLogin, FetchLogout,
+  FetchUserCall, FetchFriendsCall,
+  FetchLogin, FetchLogout, FriendsFetchInterface,
+  UserInfo,
 } from './interfaces';
 
 export function vkCall(method: string, obj: {fields: string, v: string}):
@@ -27,4 +29,14 @@ export function vkLogout():Promise<FetchLogout> {
     window.VK.Auth.logout((response: FetchLogout) => resolve(response),
       (response: FetchLogout) => reject(response));
   });
+}
+
+export function friendForUserInterface(friends: Array<FriendsFetchInterface>): Array<UserInfo> {
+  return friends.map((friend: FriendsFetchInterface) => ({
+    id: friend.id,
+    firstName: friend.first_name,
+    lastName: friend.last_name,
+    photo: friend.photo_200_orig,
+    status: friend.online,
+  }));
 }

@@ -14,6 +14,7 @@ const initialState: State = {
   firstName: '',
   lastName: '',
   status: false,
+  Auth: false,
   photo: '',
   sid: '',
   loginStatus: false,
@@ -42,6 +43,7 @@ export default function reducer(state = initialState, action: StoreInterface): S
       ...state,
       sid: action.payload,
       loginStatus: true,
+      Auth: true,
     };
   } if (isType(action, setAutorisationStarted)) {
     return {
@@ -95,6 +97,7 @@ export default function reducer(state = initialState, action: StoreInterface): S
     return {
       ...state,
       loginStatus: false,
+      Auth: false,
     };
   }
   return state;

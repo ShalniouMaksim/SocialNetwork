@@ -17,6 +17,7 @@ import {
 
 function mapStateToProps(state: StoreInterface):MapStateToProps {
   return {
+    Auth: state.Auth,
     loginStatus: state.loginStatus,
     loadingInfo: state.loadingInfo,
     getFriendsLoading: state.getFriendsLoading,

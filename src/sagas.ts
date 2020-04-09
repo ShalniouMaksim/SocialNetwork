@@ -19,7 +19,10 @@ import {
   setLogoutSuccess,
   getInfoFromAccount,
 } from './actions';
-import { vkCall, vkLogin, vkLogout } from './helper';
+import {
+  vkCall, vkLogin,
+  vkLogout, friendForUserInterface,
+} from './helper';
 import apiIdVk from './constants';
 
 declare global {
@@ -67,7 +70,8 @@ const getFriends = function* getFriends(): SagaIterator {
   });
   if (!result.error) {
     if (result.response.items) {
-      yield put(getFriendsSuccess(result.response.items));
+      const friendObject = yield call(friendForUserInterface, result.response.items);
+      yield put(getFriendsSuccess(friendObject));
     }
   } else {
     yield put(getFriendsFailure());

@@ -24,7 +24,7 @@ const UserInfo = (props: StoreInterface) => {
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <ContainerInfoUser>
-          <TextCenter>{firstName && lastName && status && `${firstName} ${lastName} ${(status) ? 'Online' : 'Offline'}`}</TextCenter>
+          <TextCenter>{firstName && lastName && `${firstName} ${lastName} ${(status) ? 'Online' : 'Offline'}`}</TextCenter>
           {photo && <ImgAvatar sizes="small" src={photo} />}
         </ContainerInfoUser>
         <TableStyle>
@@ -46,12 +46,12 @@ const UserInfo = (props: StoreInterface) => {
                   .map((friend: FriendsInterface) => (
                     <TableRow key={friend.id}>
                       <TableCell align="left">
-                        <ImgFriend src={friend.photo_200_orig} />
+                        <ImgFriend src={friend.photo} />
                       </TableCell>
                       <TableCell align="left">{friend.id}</TableCell>
-                      <TableCell align="left">{friend.first_name}</TableCell>
-                      <TableCell align="left">{friend.last_name}</TableCell>
-                      {friend.online ? (
+                      <TableCell align="left">{friend.firstName}</TableCell>
+                      <TableCell align="left">{friend.lastName}</TableCell>
+                      {friend.status ? (
                         <TableCell align="left">Online</TableCell>
                       ) : (
                         <TableCell align="left">
