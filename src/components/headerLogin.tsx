@@ -13,11 +13,6 @@ import {
 } from '../styled';
 
 export default class HeaderComponent extends React.Component<StoreInterface> {
-  componentDidUpdate(): void {
-    const { Auth, history } = this.props;
-    if (Auth) history.push('/logout');
-  }
-
   getAuthorisationVk = (): void => {
     const { loginOAuthVK } = this.props;
     loginOAuthVK();

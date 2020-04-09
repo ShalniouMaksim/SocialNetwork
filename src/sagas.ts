@@ -35,8 +35,8 @@ const logoutVkFunc = function* logoutVkFunc(): SagaIterator {
   const resultLogout = yield call(vkLogout);
   if (resultLogout.session) yield put(setLogoutFailure());
   else {
-    yield put(setLogoutSuccess());
     localStorage.setItem('isAuth', 'false');
+    yield put(setLogoutSuccess());
   }
 };
 
@@ -82,8 +82,8 @@ const authorisationOAuth = function* authorisationOAuth(): SagaIterator {
   yield call(window.VK.init, { apiId: apiIdVk });
   const resultLogin = yield call(vkLogin, 73728);
   if (resultLogin.session) {
-    yield put(setAutorisationSuccess(resultLogin.session.sid));
     localStorage.setItem('isAuth', 'true');
+    yield put(setAutorisationSuccess(resultLogin.session.sid));
     yield put(getAccountInfoStarted());
     yield put(getFriendsStarted());
   } else {

@@ -6,12 +6,13 @@ import UserInfoLogin from '../containers/userInfoLogin';
 import HeaderLogout from '../containers/headerLogout';
 
 const browserHistory = createHistory();
-export default function RouterComponent() {
+export default function RouterComponent(props: { Auth: boolean}) {
+  const { Auth } = props;
   useEffect(() => {
     if (localStorage.isAuth === 'true') {
       browserHistory.push('/logout');
     } else browserHistory.push('/auth');
-  }, []);
+  }, [Auth]);
   return (
     <Router history={browserHistory}>
       <Switch>

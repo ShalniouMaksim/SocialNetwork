@@ -14,11 +14,6 @@ export default class HeaderComponent extends React.Component<StoreInterface> {
     checkAutorisation();
   }
 
-  componentDidUpdate(): void {
-    const { Auth, history } = this.props;
-    if (!Auth) history.push('/auth');
-  }
-
   getInfoUser = (): void => {
     const { getInfoFromAccount } = this.props;
     getInfoFromAccount();

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { Footer } from './styled';
 import reducer from './redusers';
 import watchMessages from './sagas';
-import RouterComponent from './components/routeConfig';
+import RouterComponent from './containers/routeConfig';
 import { GlobalStyle } from './globalstyles';
 
 const sagaMiddleware = createSagaMiddleware();
